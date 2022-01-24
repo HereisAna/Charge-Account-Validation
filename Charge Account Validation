@@ -1,0 +1,57 @@
+#include<iostream>
+using namespace std; 
+
+int searchAcct(const int arr[], int size, int value);
+
+int main() {
+	//CHARGE ACCOUNT VALIDATION
+	//This program lets the user enter a charge account number.
+	//The program determins if the number is valid by checking for it in the following list :
+
+	/*5658845  4520125  7895122  8777541  8451277  1302850
+	8080152  4562555  5552012  5050552  7825877  1250255
+	1005231  6545231  3852085  7576651  7881200  4581002*/
+		
+	//The list of numbers is initialized in a single - dimensional array.
+	//A simple linear search is used to locate the number entered by the user.
+	//If the user enters a number that is in the array, the program displays a message saying the number is valid.
+	//If the user enters a number that is not in the array, the program displays a message indicating the number is invalid.
+
+	const int SIZE = 18;
+	int arrAcct[SIZE] = { 
+		5658845, 4520125, 7895122, 8777541, 8451277, 1302850, 
+		8080152, 4562555, 5552012, 5050552, 7825877, 1250255, 
+		1005231, 6545231, 3852085, 7576651, 7881200, 4581002 };
+
+	int acctNum;
+	cout << "Please enter account#: ";
+	cin >> acctNum;
+	//search for acctNum; function call;
+	int result = searchAcct(arrAcct, SIZE, acctNum);
+
+	if (result == -1)
+		cout << "The account number has not been found." << endl;
+
+	else
+		cout << "The account number is valid!";
+
+
+	return 0;
+}
+
+int searchAcct(const int arr[], int size, int value) {
+	int position = -1;
+	int index = 0; 
+	bool found = false; 
+
+	while (index < size && !found) {
+		if (arr[index] == value) //if the value is found
+		{
+			found = true;		//set the flag 
+			position = index;	//record the value subscript
+		}
+		index++; //go to next element
+	}
+
+	return position;
+}
